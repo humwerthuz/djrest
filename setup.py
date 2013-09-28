@@ -43,7 +43,16 @@ setup(
     url="http://github.com/humwerthuz/djrest",
     download_url="https://github.com/humwerthuz/djrest/archive/djrest-0.1b.zip",
     license="MIT",
-    packages=["djrest"],
+    packages=[
+        "djrest",
+        "djrest.common",
+        "djrest.http"
+    ],
+    py_modules=[
+        "djrest.common.api",
+        "djrest.common.helpers",
+        "djrest.http.responses"
+    ],
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     platforms="any",
