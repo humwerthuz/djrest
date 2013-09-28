@@ -15,20 +15,20 @@ Now you can create a resource app, see example below
                                 urls.py
                   some_app/
                   another_app/
-                  resource/
+                  example_resource/
                           __init__.py
                           api/
                               __init__.py
                               operations.py
                               resource.py
     
-In this example you see resource dir wich contains api module wich contains operations and resource modules.
+In this example you see resource dir which contains api module which contains operations and resource modules.
 
 Now let's de declare a resource class (resource.py file):
 
 
     from djrest.common.api import Resource
-    from resource.api import operations
+    from example_resource.api import operations
     
     
     class TestResource(Resource):
@@ -44,9 +44,10 @@ Now let's declare TestOperation class (operations.py file):
     
     @Rest.route("/", methods=["GET"])
     class TestOperation(Rest):
-        return JsonResponse({
-            'status': 'all success'
-        })
+        def get(self, request):
+            return JsonResponse({
+                'status': 'all success'
+            })
         
 Now and finally you must add this in urls.py:
 
@@ -77,11 +78,19 @@ You can specify parameters for your urls like this:
 
     @Rest.route("/{id:int}", methods=["GET", "POST"])
     class TestResource(Resource):
-        pass
+        def get(...):
+            pass
+
+        def post(...):
+            pass
       
     @Rest.route("/{id:int}/update_name/{name:str}", methods=["GET", "POST"])
     class TestResource(Resource):
-        pass
+        def get(...):
+            pass
+
+        def post(...):
+            pass
 
 In case you want to access the same resource without the parameters you can do as following
 

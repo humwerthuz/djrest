@@ -1,4 +1,5 @@
 build/
+MANIFEST
 .idea/
 *.log
 *.pot
