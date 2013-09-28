@@ -57,7 +57,7 @@ setup(
     long_description=LONG_DESCRIPTION,
     platforms="any",
     classifiers=[
-        'Development Status :: 1 - Beta',
+        'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: End Users/Desktop',
