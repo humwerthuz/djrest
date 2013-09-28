@@ -14,11 +14,8 @@ Classifier: Development Status :: 4 - Beta
 Classifier: Environment :: Console
 Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: End Users/Desktop
-Classifier: License :: OSI Approved :: The MIT License (MIT)
+Classifier: License :: OSI Approved :: MIT License (MIT)
 Classifier: Operating System :: Microsoft :: Windows
 Classifier: Operating System :: POSIX
 Classifier: Operating System :: MacOS
 Classifier: Topic :: Software Development :: Libraries :: Python Modules
-Classifier: Topic :: Web Development
-Classifier: Topic :: Web Services
-Classifier: Topic :: Rest

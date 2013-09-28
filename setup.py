@@ -61,13 +61,10 @@ setup(
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: End Users/Desktop',
-        'License :: OSI Approved :: The MIT License (MIT)',
+        'License :: OSI Approved :: MIT License',
         'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX',
         'Operating System :: MacOS',
         'Topic :: Software Development :: Libraries :: Python Modules',
-        'Classifier: Topic :: Web Development',
-        'Classifier: Topic :: Web Services',
-        'Classifier: Topic :: Rest',
     ]
 )
