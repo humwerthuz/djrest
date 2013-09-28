@@ -41,7 +41,7 @@ setup(
     author="Humberto Rojas",
     author_email="hrojasc(at)ieee.org",
     url="http://github.com/humwerthuz/djrest",
-    download_url="https://github.com/humwerthuz/djrest/archive/release-0.1b.zip",
+    download_url="https://github.com/humwerthuz/djrest/archive/djrest-0.1b.zip",
     license="MIT",
     packages=["djrest"],
     description=DESCRIPTION,
