@@ -84,6 +84,7 @@ You can specify parameters for your urls like this:
         pass
 
 In case you want to access the same resource without the parameters you can do as following
+
     @Rest.route("/{id:int}", allow_empty_args=True, methods=["GET"])
     class TestResource(Resource):
         def get(self, request, id=None):
