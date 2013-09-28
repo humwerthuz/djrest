@@ -99,20 +99,22 @@ class Rest(object):
             f.__protected_rest_view = True
             f.__rest_secure = secure
             f.__supported_methods = [m for m in methods if m in valid_methods]
-            tag_pos = temp_url.find(':')
-            while tag_pos > 0:
-                arg_type = temp_url[tag_pos:tag_pos + 4]
-                if arg_type == ':int':
-                    tag = r'\d+'
-                elif arg_type == ':str':
-                    tag = r'\w+'
-                else:
-                    raise ValueError('Incorrect argument type. Values are "int" or "str"')
-                temp_url = temp_url.replace(arg_type, '', 1).replace('{', '(?P<', 1).replace('}', '>%s)' % tag, 1)
+            if temp_url == "/":
+                temp_url = ""
+            else:
                 tag_pos = temp_url.find(':')
-            if tag_pos == -1 and re.match(".*{.*}.*""", temp_url):
-                raise ValueError('Missing argument type. Values are "int" or "str"')
-
+                while tag_pos > 0:
+                    arg_type = temp_url[tag_pos:tag_pos + 4]
+                    if arg_type == ':int':
+                        tag = r'\d+'
+                    elif arg_type == ':str':
+                        tag = r'\w+'
+                    else:
+                        raise ValueError('Incorrect argument type. Values are "int" or "str"')
+                    temp_url = temp_url.replace(arg_type, '', 1).replace('{', '(?P<', 1).replace('}', '>%s)' % tag, 1)
+                    tag_pos = temp_url.find(':')
+                if tag_pos == -1 and re.match(".*{.*}.*""", temp_url):
+                    raise ValueError('Missing argument type. Values are "int" or "str"')
             if allow_empty_args:
                 f.allow_empty_args = True
             else:
