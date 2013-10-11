@@ -37,7 +37,7 @@ if sys.version < '2.2.3':
 
 setup(
     name="djrest",
-    version="0.1b",
+    version="0.11b",
     author="Humberto Rojas",
     author_email="hrojasc(at)ieee.org",
     url="http://github.com/humwerthuz/djrest",
