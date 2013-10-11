@@ -1,6 +1,6 @@
 Metadata-Version: 0.1
 Name: djrest
-Version: 0.1b
+Version: 0.11b
 Summary: api for creating simple rest service with django
 Home-page: http://github.com/humwerthuz/djrest
 Author: Humberto Rojas
