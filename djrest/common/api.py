@@ -29,12 +29,12 @@ class RestApi(object):
                 pattern_list.append(url(r"%s/%s%s%s$" % (resource_method.version,
                                                          self._resources[resource].resource_name,
                                                          resource_method.url, trailing_slash()),
-                                        resource_method()))
+                                        resource_method))
                 if resource_method.allow_empty_args:
-                    pattern_list.append(url(r"%s/%s%s$" % (resource_method.version,
-                                                           self._resources[resource].resource_name,
-                                                           trailing_slash()),
-                                            resource_method()))
+                    pattern_list.append(url(r"%s/%s%s%s$" % (resource_method.version,
+                                                             self._resources[resource].resource_name,
+                                                             resource_method.base_url, trailing_slash()),
+                                            resource_method))
 
         urlpatterns += patterns('', *pattern_list)
 
@@ -55,20 +55,21 @@ class Resource(object):
     def __init__(self):
         self._versions_package = []
         self._methods = {}
+        self.secure_methods = True
 
     def register_rest_operation(self, version, rest_op):
         ## validate version.
         if not re.match(r'^v[0-9]+$', version):
             raise ValueError("Version must match 'v[0-9].*'")
         rest_op.version = version
-        self._methods[id(rest_op)] = rest_op
+        ## Instantiate Rest class
+        m_obj = rest_op()
+        m_obj.rest_secure = self.secure_methods
+        self._methods[id(m_obj)] = m_obj
 
     @property
     def methods(self):
-        _operations = []
-        for _key in self._methods:
-            _operations.append(self._methods[_key])
-        return _operations
+        return [self._methods[_key] for _key in self._methods]
 
 
 class Rest(object):
@@ -101,8 +102,14 @@ class Rest(object):
             f.__supported_methods = [m for m in methods if m in valid_methods]
             if temp_url == "/":
                 temp_url = ""
+                base_url = ""
             else:
                 tag_pos = temp_url.find(':')
+                bracket_pos = temp_url.find('{')
+                if bracket_pos >= 0:
+                    base_url = temp_url[:(bracket_pos - 1)]
+                else:
+                    base_url = temp_url
                 while tag_pos > 0:
                     arg_type = temp_url[tag_pos:tag_pos + 4]
                     if arg_type == ':int':
@@ -119,6 +126,7 @@ class Rest(object):
                 f.allow_empty_args = True
             else:
                 f.allow_empty_args = False
+            f.base_url = base_url
             f.url = temp_url
             return f
         return wrap
